@@ -1,5 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
+import Hero from './components/Hero';
 
 function App() {
   const recipes = [
@@ -43,19 +44,10 @@ function App() {
 
   return (
     <div className="bg-surface min-h-screen text-foreground font-body">
-      
+
       <Navbar />
 
-      <section className="bg-brand-light py-10">
-        <div className="max-w-5xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-brand">
-            Welcome to RecipeBase
-          </h2>
-          <p className="mt-2 text-gray-700">
-            Your cozy personal recipe manager 🍲
-          </p>
-        </div>
-      </section>
+      <Hero />
 
       <main className="max-w-5xl mx-auto px-4 py-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (
