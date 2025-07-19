@@ -13,7 +13,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
           className="bg-white rounded-xl shadow-md p-6 flex flex-col justify-between"
         >
           <div>
-            <h3 className="text-lg font-semibold text-brand-dark">
+            <h3 className="text-lg font-semibold text-gray-800">
               {recipe.title}
             </h3>
             <p className="text-sm text-gray-600 mt-2">
@@ -24,7 +24,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
               {recipe.steps.length} steps
             </p>
           </div>
-          <button className="mt-4 self-start bg-brand hover:bg-brand-dark text-white text-sm font-medium py-2 px-4 rounded">
+          <button className="mt-4 self-start bg-black hover:bg-gray-800 text-white text-sm font-medium py-2 px-4 rounded">
             View Details
           </button>
         </div>
