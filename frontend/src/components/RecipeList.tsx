@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { Recipe } from '../interfaces/Recipe';
 
 interface RecipeListProps {
@@ -25,7 +26,12 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
             </p>
           </div>
           <button className="mt-4 self-start bg-black hover:bg-gray-800 text-white text-sm font-medium py-2 px-4 rounded">
-            View Details
+            <Link
+              to={`/recipes/${recipe.id}`}
+              className="mt-4 self-start bg-black hover:bg-gray-800 text-white text-sm font-medium py-2 px-4 rounded"
+            >
+              View Details
+            </Link>
           </button>
         </div>
       ))}
