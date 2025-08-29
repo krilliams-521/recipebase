@@ -1,0 +1,32 @@
+import { Link } from 'react-router-dom';
+import type { Recipe } from '../interfaces/Recipe';
+
+const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
+  return (
+    <div
+      key={recipe.id}
+      className="bg-white rounded-xl shadow-md p-6 flex flex-col justify-between"
+    >
+      <div>
+        <h3 className="text-lg font-semibold text-gray-800">{recipe.title}</h3>
+        <p className="text-sm text-gray-600 mt-2">
+          <strong>Ingredients:</strong>{' '}
+          {recipe.ingredients.slice(0, 3).join(', ')}...
+        </p>
+        <p className="text-sm text-gray-500 mt-1">
+          {recipe.steps.length} steps
+        </p>
+      </div>
+      <button className="mt-4 self-start bg-black hover:bg-gray-800 text-white text-sm font-medium py-2 px-4 rounded">
+        <Link
+          to={`/recipes/${recipe.id}`}
+          className="mt-4 self-start bg-black hover:bg-gray-800 text-white text-sm font-medium py-2 px-4 rounded"
+        >
+          View Details
+        </Link>
+      </button>
+    </div>
+  );
+};
+
+export default RecipeCard;
