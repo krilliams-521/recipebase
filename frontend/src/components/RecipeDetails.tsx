@@ -1,13 +1,52 @@
 import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import type { Recipe } from '../interfaces/Recipe';
 
-interface RecipeDetailsProps {
-  recipes: Recipe[];
-}
-
-const RecipeDetails = ({ recipes }: RecipeDetailsProps) => {
+const RecipeDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const recipe = recipes.find((r) => r.id === Number(id));
+  const [recipe, setRecipe] = useState<Recipe | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      try {
+        const res = await fetch(`http://localhost:3000/recipes/${id}`);
+        if (!res.ok) throw new Error('Failed to fetch recipe');
+        const data = await res.json();
+        setRecipe(data);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('An unknown error occurred');
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (id) fetchRecipe();
+  }, [id]);
+
+
+  if (loading) {
+    return (
+      <div className="max-w-5xl mx-auto px-4 py-10">
+        <p>Loading...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-5xl mx-auto px-4 py-10">
+        <p className="text-red-500">{error}</p>
+        <Link to="/" className="text-blue-500 hover:underline">
+          Go back
+        </Link>
+      </div>
+    );
+  }
 
   if (!recipe) {
     return (
