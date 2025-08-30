@@ -85,10 +85,29 @@ const RecipeDetails = () => {
         </Link>
         <Link
           to={`/edit-recipe/${recipe.id}`}
-          className="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded"
+          className="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded"
         >
           Edit Recipe
         </Link>
+        <button
+          type="button"
+          className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded"
+          onClick={async () => {
+            if (window.confirm('Are you sure you want to delete this recipe?')) {
+              try {
+                const res = await fetch(`http://localhost:3000/recipes/${recipe.id}`, {
+                  method: 'DELETE',
+                });
+                if (!res.ok) throw new Error('Failed to delete recipe');
+                window.location.href = '/';
+              } catch {
+                alert('Error deleting recipe.');
+              }
+            }
+          }}
+        >
+          Delete Recipe
+        </button>
       </div>
     </div>
   );
