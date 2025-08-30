@@ -1,9 +1,10 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { Recipe } from '../interfaces/Recipe';
 
 const RecipeDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -99,7 +100,7 @@ const RecipeDetails = () => {
                   method: 'DELETE',
                 });
                 if (!res.ok) throw new Error('Failed to delete recipe');
-                window.location.href = '/';
+                navigate('/');
               } catch {
                 alert('Error deleting recipe.');
               }
