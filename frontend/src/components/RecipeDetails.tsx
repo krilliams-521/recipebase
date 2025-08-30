@@ -28,7 +28,6 @@ const RecipeDetails = () => {
     if (id) fetchRecipe();
   }, [id]);
 
-
   if (loading) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-10">
@@ -77,12 +76,20 @@ const RecipeDetails = () => {
         ))}
       </ol>
 
-      <Link
-        to="/"
-        className="inline-block mt-8 bg-black hover:bg-gray-800 text-white py-2 px-4 rounded"
-      >
-        Back to Recipes
-      </Link>
+      <div className="flex gap-4 mt-8">
+        <Link
+          to="/"
+          className="bg-black hover:bg-gray-800 text-white py-2 px-4 rounded"
+        >
+          Back to Recipes
+        </Link>
+        <Link
+          to={`/edit-recipe/${recipe.id}`}
+          className="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded"
+        >
+          Edit Recipe
+        </Link>
+      </div>
     </div>
   );
 };

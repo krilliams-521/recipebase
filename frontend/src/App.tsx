@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import RecipeList from './components/RecipeList';
 import RecipeDetails from './components/RecipeDetails';
 import AddRecipe from './components/AddRecipe';
+import EditRecipe from './components/EditRecipe';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             }
           />
           <Route path="/add-recipe" element={<AddRecipe />} />
+          <Route path="/edit-recipe/:id" element={<EditRecipe />} />
           <Route path="/recipes/:id" element={<RecipeDetails />} />
         </Routes>
       </div>
