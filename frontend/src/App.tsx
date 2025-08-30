@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import RecipeList from './components/RecipeList';
@@ -19,12 +19,12 @@ function App() {
               <>
                 <Hero />
                 <div className="max-w-5xl mx-auto px-4 py-4 flex justify-start">
-                  <a
-                    href="/add-recipe"
-                    className="bg-black hover:bg-gray-800 text-white py-2 px-4 rounded"
+                  <Link
+                    to="/add-recipe"
+                    className="bg-black hover:bg-gray-800 text-white py-2 px-4 rounded inline-block text-center"
                   >
                     Add Recipe
-                  </a>
+                  </Link>
                 </div>
                 <RecipeList />
               </>
