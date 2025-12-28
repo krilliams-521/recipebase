@@ -12,9 +12,6 @@ const Navbar = () => {
             Home
           </Link>
           <Link to="#" className="hover:text-gray-800">
-            Planner
-          </Link>
-          <Link to="#" className="hover:text-gray-800">
             Login
           </Link>
         </nav>
