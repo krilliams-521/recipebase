@@ -1,6 +1,7 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { Recipe } from '../interfaces/Recipe';
+import { API_URL } from '../apiConfig';
 
 const RecipeDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,7 +13,7 @@ const RecipeDetails = () => {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/recipes/${id}`);
+        const res = await fetch(`${API_URL}/recipes/${id}`);
         if (!res.ok) throw new Error('Failed to fetch recipe');
         const data = await res.json();
         setRecipe(data);
@@ -96,7 +97,7 @@ const RecipeDetails = () => {
           onClick={async () => {
             if (window.confirm('Are you sure you want to delete this recipe?')) {
               try {
-                const res = await fetch(`http://localhost:3000/recipes/${recipe.id}`, {
+                const res = await fetch(`${API_URL}/recipes/${recipe.id}`, {
                   method: 'DELETE',
                 });
                 if (!res.ok) throw new Error('Failed to delete recipe');

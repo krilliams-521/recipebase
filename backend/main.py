@@ -4,8 +4,18 @@ from db import SessionLocal, Base, engine
 from models import Recipe
 from schemas import RecipeCreate, RecipeRead
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="RecipeBase API")
+
+# Add this before your endpoints
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Or specify your frontend URL, e.g., ["http://localhost:5173"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 Base.metadata.create_all(bind=engine)
 

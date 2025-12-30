@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import RecipeForm from './RecipeForm';
 import type { Recipe } from '../interfaces/Recipe';
+import { API_URL } from '../apiConfig';
+import RecipeForm from './RecipeForm';
 
 const EditRecipe = () => {
   const { id } = useParams<{ id: string }>();
@@ -15,7 +16,7 @@ const EditRecipe = () => {
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/recipes/${id}`);
+        const res = await fetch(`${API_URL}/recipes/${id}`);
         if (!res.ok) throw new Error('Failed to fetch recipe');
         const data = await res.json();
         setInitialRecipe(data);
@@ -36,7 +37,7 @@ const EditRecipe = () => {
     setSubmitLoading(true);
     setSubmitError(null);
     try {
-      const res = await fetch(`http://localhost:3000/recipes/${id}`, {
+      const res = await fetch(`${API_URL}/recipes/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...recipe, id: Number(id) }),

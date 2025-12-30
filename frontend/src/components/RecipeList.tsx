@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Recipe } from '../interfaces/Recipe';
+import { API_URL } from '../apiConfig';
 const RecipeList: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +10,7 @@ const RecipeList: React.FC = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const res = await fetch('http://localhost:3000/recipes');
+        const res = await fetch(`${API_URL}/recipes`);
         if (!res.ok) throw new Error('Failed to fetch recipes');
         const data = await res.json();
         setRecipes(data);

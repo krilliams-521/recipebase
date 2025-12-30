@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../apiConfig';
 import RecipeForm from './RecipeForm';
 
 const AddRecipe = () => {
@@ -11,7 +12,7 @@ const AddRecipe = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('http://localhost:3000/recipes', {
+      const res = await fetch(`${API_URL}/recipes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(recipe),
